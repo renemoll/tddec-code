@@ -27,7 +27,6 @@
 
 #include "LightScheduler.h"
 #include "LightController.h"
-#include "TimeService.h"
 #include "RandomMinute.h"
 #include <stdlib.h>
 #include <string.h>
@@ -95,7 +94,7 @@ void LightScheduler_ScheduleTurnOn(int id, Day day, int minuteOfDay)
     scheduleEvent(id, day, minuteOfDay, TURN_ON, RANDOM_OFF);
 }
 
-void LightScheduler_ScheduleTurnOff(int id, int day, int minuteOfDay)
+void LightScheduler_ScheduleTurnOff(int id, Day day, int minuteOfDay)
 {
     scheduleEvent(id, day, minuteOfDay, TURN_OFF, RANDOM_OFF);
 }

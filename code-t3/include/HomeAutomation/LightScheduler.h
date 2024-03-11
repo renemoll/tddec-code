@@ -27,11 +27,13 @@
 #ifndef D_LightScheduler_H
 #define D_LightScheduler_H
 
+#include "TimeService.h"
+
 void LightScheduler_Create(void);
 void LightScheduler_Destroy(void);
-void LightScheduler_ScheduleTurnOn(int id, int day, int minute);
-void LightScheduler_ScheduleTurnOff(int id, int day, int minute);
-void LightScheduler_Randomize(int id, int day, int minute);
-void LightScheduler_ScheduleRemove(int id, int day, int minute);
+void LightScheduler_ScheduleTurnOn(int id, Day day, int minute);
+void LightScheduler_ScheduleTurnOff(int id, Day day, int minute);
+void LightScheduler_Randomize(int id, Day day, int minute);
+void LightScheduler_ScheduleRemove(int id, Day day, int minute);
 void LightScheduler_WakeUp(void);
 #endif  /* D_LightScheduler_H */

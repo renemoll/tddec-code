@@ -160,7 +160,7 @@ void LightScheduler_ScheduleTurnOn(int id, Day day, int minute)
     scheduleEvent(id, day, minute, TURN_ON, RANDOM_OFF);
 }
 
-void LightScheduler_ScheduleTurnOff(int id, int day, int minute)
+void LightScheduler_ScheduleTurnOff(int id, Day day, int minute)
 {
     scheduleEvent(id, day, minute, TURN_OFF, RANDOM_OFF);
 }
