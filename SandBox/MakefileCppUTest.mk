@@ -14,7 +14,7 @@ PROJECT_HOME_DIR = .
 CPP_PLATFORM = Gcc
 
 SRC_DIRS = \
-	$(PROJECT_HOME_DIR)/src/LedDriver \
+	$(PROJECT_HOME_DIR)/src \
 
 TEST_SRC_DIRS = \
 	tests\
@@ -22,8 +22,8 @@ TEST_SRC_DIRS = \
 
 INCLUDE_DIRS =\
   .\
-  $(CPPUTEST_HOME)/include\
-  $(PROJECT_HOME_DIR)/include/LedDriver\
+  $(CPPUTEST_HOME)/include \
+  $(PROJECT_HOME_DIR)/include/
 
 include ../CppUTestCompileFlags.mk
 include $(CPPUTEST_HOME)/build/MakefileWorker.mk
