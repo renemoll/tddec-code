@@ -14,11 +14,11 @@ PROJECT_HOME_DIR = .
 CPP_PLATFORM = Gcc
 
 SRC_DIRS = \
-	$(PROJECT_HOME_DIR)/src \
+	$(PROJECT_HOME_DIR)/src
 
 TEST_SRC_DIRS = \
 	tests\
-	tests/*\
+	tests/*
 
 INCLUDE_DIRS =\
   .\
