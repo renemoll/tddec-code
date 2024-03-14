@@ -25,7 +25,7 @@ TEST(LedDriver, Initialization)
   LedDriver_Create(&ledStateLocal);
 
   // Verify
-  CHECK_EQUAL(ledStateLocal, 0);
+  CHECK_EQUAL(0, ledStateLocal);
 }
 
 TEST(LedDriver, TurnOnLedOne)
@@ -36,7 +36,7 @@ TEST(LedDriver, TurnOnLedOne)
   LedDriver_TurnOn(1);
 
   // Verify
-  CHECK_EQUAL(ledState, 0x0001);
+  CHECK_EQUAL(0x0001, ledState);
 }
 
 TEST(LedDriver, TurnOffLedOne)
@@ -48,7 +48,7 @@ TEST(LedDriver, TurnOffLedOne)
   LedDriver_TurnOff(1);
 
   // Verify
-  CHECK_EQUAL(ledState, 0x0000);
+  CHECK_EQUAL(0x0000, ledState);
 }
 
 TEST(LedDriver, TurnOnMultipleLeds)
@@ -61,7 +61,7 @@ TEST(LedDriver, TurnOnMultipleLeds)
   LedDriver_TurnOn(9);
 
   // Verify
-  CHECK_EQUAL(ledState, 0x0181);
+  CHECK_EQUAL(0x0181, ledState);
 }
 
 TEST(LedDriver, TurnOffMultipleLeds)
@@ -76,7 +76,7 @@ TEST(LedDriver, TurnOffMultipleLeds)
   LedDriver_TurnOff(9);
 
   // Verify
-  CHECK_EQUAL(ledState, 0x0002);
+  CHECK_EQUAL(0x0002, ledState);
 }
 
 TEST(LedDriver, TurnOnAllLeds)
@@ -84,28 +84,22 @@ TEST(LedDriver, TurnOnAllLeds)
   // Prepare
 
   // Execute
-  for (int i = 0; i < 16; ++i) {
-    LedDriver_TurnOn(i + 1);  // note: LED ID starts at 1
-  }
+  LedDriver_TurnAllOn();
 
   // Verify
-  CHECK_EQUAL(ledState, 0xFFFF);
+  CHECK_EQUAL(0xFFFF, ledState);
 }
 
 TEST(LedDriver, TurnOffAllLeds)
 {
   // Prepare
-  for (int i = 0; i < 16; ++i) {
-    LedDriver_TurnOn(i + 1);
-  }
+  LedDriver_TurnAllOn();
 
   // Execute
-  for (int i = 0; i < 16; ++i) {
-    LedDriver_TurnOff(i + 1);
-  }
+  LedDriver_TurnAllOff();
 
   // Verify
-  CHECK_EQUAL(ledState, 0x0000);
+  CHECK_EQUAL(0x0000, ledState);
 }
 
 TEST(LedDriver, TurningOnUnsupportedLedHasNoEffect)
@@ -116,8 +110,21 @@ TEST(LedDriver, TurningOnUnsupportedLedHasNoEffect)
   LedDriver_TurnOn(9);
 
   // Execute
+  LedDriver_TurnOn(0);
   LedDriver_TurnOn(17);
 
   // Verify
-  CHECK_EQUAL(ledState, 0x0182);
+  CHECK_EQUAL(0x0182, ledState);
+}
+
+TEST(LedDriver, RegisterIsWriteOnly)
+{
+  // Prepare
+  ledState = 0xffff;
+
+  // Execute
+  LedDriver_TurnOn(8);
+
+  // Verify
+  CHECK_EQUAL(0x0080, ledState);
 }
